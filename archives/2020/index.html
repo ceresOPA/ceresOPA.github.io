@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <!--<link rel="stylesheet" href="/css/style.css?v=1587916192675">-->
+  <!--<link rel="stylesheet" href="/css/style.css?v=1587923549302">-->
 
    
     <style>
@@ -55,9 +55,9 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>2</div>
-        <div><span>标签</span>0</div>
-        <div><span>分类</span>0</div>
+        <div><span>文章</span>3</div>
+        <div><span>标签</span>1</div>
+        <div><span>分类</span>1</div>
     </div>
     <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
@@ -86,14 +86,6 @@
     <aside id="nexmoe-sidebar">
   
   <div class="nexmoe-widget-wrap">
-    <div class="nexmoe-widget nexmoe-search">
-        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
-            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
-        </form>
-    </div>
-</div>
-  
-  <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">社交按钮</h3>
     <div class="nexmoe-widget nexmoe-social">
         <a class="mdui-ripple" href="https://space.bilibili.com/510005777" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
@@ -105,18 +97,73 @@
 </div>
   
   
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/组成原理/">组成原理</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
 
   
   
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/%E8%A1%A5%E7%A0%81/" style="font-size: 10px;">补码</a>
+    </div>
+    
+  </div>
+
   
   
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章归档</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul>
     </div>
   </div>
 
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/27/%E8%A1%A5%E7%A0%81%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%AE%A4%E8%AF%86/">补码的深度认识</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/pytorch%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/">pytorch深度学习基础笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
   
 </aside>
@@ -188,7 +235,7 @@
   </div>
   <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<!--<script src="/js/app.js?v=1587916192676"></script>-->
+<!--<script src="/js/app.js?v=1587923549304"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
@@ -210,7 +257,7 @@
 
 $(window).scroll(function() {
         var height = $(document).scrollTop();
-        console.log("gun",height); 
+        // console.log("gun",height); 
         if (height > 0) {
           $('#back-to-top').addClass('back-to-top-on');
         }else{

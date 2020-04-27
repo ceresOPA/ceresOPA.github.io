@@ -22,6 +22,7 @@ const getRealPath = (pathname, desc = false) => {
 };
 let links = document.querySelectorAll(".nexmoe-list-item");
 let rootRealPath = getRealPath(window.location.pathname, true);
+console.log(rootRealPath);
 for (let link of links) {
   let linkPath = link.getAttribute("href");
   if (linkPath && getRealPath(linkPath, true) === rootRealPath) {

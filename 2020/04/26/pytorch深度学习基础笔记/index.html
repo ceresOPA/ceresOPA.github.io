@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ceresopa/ceresopa.github.io@master/lib/iconfont/iconfont.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ceresopa/ceresopa.github.io@master/static/style.css">
   
-  <!--<link rel="stylesheet" href="/css/style.css?v=1587970702325">-->
+  <!--<link rel="stylesheet" href="/css/style.css?v=1587970916024">-->
 
    
     <style>
@@ -195,7 +195,7 @@
   
   <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年04月26日</a>
-    <a><i class="nexmoefont icon-areachart"></i>897 字</a>
+    <a><i class="nexmoefont icon-areachart"></i>907 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>阅读预计 4 分钟</a>
 </div>
 
@@ -219,34 +219,58 @@
 <li>张量就是个多维数组，类似数学中的矩阵</li>
 <li>张量的创建：</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">torch.empty(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>)  <span class="hljs-comment">#创建了一个3行2列填充了未初始化数据的张量</span><br>torch.rand(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>)   <span class="hljs-comment">#创建了一个随机初始化数据的张量</span><br>torch.zeros(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,dtype=int)  <span class="hljs-comment">#创建了一个数据类型为int的0矩阵（张量）</span><br>x =torch.tensor([<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>])   <span class="hljs-comment">#创建给定数据张量并初始化，tensor和zeros都可以指定张量内数据类型</span><br>y = x.new_ones(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>)  <span class="hljs-comment">#根据已经的张量创建新的张量，new_*来创建对象，新创建的y会继承x的原有属性，例如如何不重新指定dtype，那么它的就和x的dtype是一样的。</span><br>z = torch.randn_like(x,dtype=torch.double)  <span class="hljs-comment">#覆盖数据和数据类型，不改变大小(x,size())</span><br></code></pre></td></tr></table></figure>
-
+<pre><code class="python">torch.empty(3,2)  #创建了一个3行2列填充了未初始化数据的张量
+torch.rand(3,2)   #创建了一个随机初始化数据的张量
+torch.zeros(3,2,dtype=int)  #创建了一个数据类型为int的0矩阵（张量）
+x =torch.tensor([2,3,3])   #创建给定数据张量并初始化，tensor和zeros都可以指定张量内数据类型
+y = x.new_ones(3,2)  #根据已经的张量创建新的张量，new_*来创建对象，新创建的y会继承x的原有属性，例如如何不重新指定dtype，那么它的就和x的dtype是一样的。
+z = torch.randn_like(x,dtype=torch.double)  #覆盖数据和数据类型，不改变大小(x,size())</code></pre>
 <ul>
 <li>张量中torch.rand()和torch.randn的区别</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">torch.rand(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>)   <span class="hljs-comment">#rand的采样点为非正态分布</span><br>torch.randn(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>)  <span class="hljs-comment">#randn为正态分布</span><br></code></pre></td></tr></table></figure>
-
-
-
+<pre><code class="python">torch.rand(3,2)   #rand的采样点为非正态分布
+torch.randn(3,2)  #randn为正态分布</code></pre>
 <ul>
 <li>张量的操作</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 张量中数据的默认类型为float，且只有类型相同且大小相同（指行列相同）的张量才能进行例如加法等操作</span><br>x = torch.rand(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>)<br>y = torch.rand(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>)<br><span class="hljs-comment"># 第一种加法</span><br>x+y<br><span class="hljs-comment"># 第二种加法</span><br>torch.add(x,y)<br><span class="hljs-comment"># 提供输出tensor的带参数的加法</span><br>result = torch.empty(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>)  <span class="hljs-comment">#这里无论哪种创建都可以，但empty是未初始化数据，更推荐</span><br>torch.add(x,y,out=result)  <span class="hljs-comment">#此时result = x+y</span><br><span class="hljs-comment"># 替换</span><br>y.add_(x)  <span class="hljs-comment">#将x加到y上，改变y</span><br><span class="hljs-comment"># 任何以下划线结尾的操作都会用结果替换原变量。例如：x.copy_(y), x.t_(), 都会改变 x。</span><br>x.copy_(y)  <span class="hljs-comment">#复制</span><br>x.t_()  <span class="hljs-comment">#矩阵转置</span><br>x = torch.randn(<span class="hljs-number">1</span>)<br>x, x.item()  <span class="hljs-comment"># 如果张量只有一个元素，使用.item()可以得到 Python 数据类型的数值</span><br>x.view(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>)  <span class="hljs-comment">#不改变数据，改变大小（行和列），但行乘列是不变的</span><br></code></pre></td></tr></table></figure>
-
+<pre><code class="python"># 张量中数据的默认类型为float，且只有类型相同且大小相同（指行列相同）的张量才能进行例如加法等操作
+x = torch.rand(3,2)
+y = torch.rand(3,2)
+# 第一种加法
+x+y
+# 第二种加法
+torch.add(x,y)
+# 提供输出tensor的带参数的加法
+result = torch.empty(3,2)  #这里无论哪种创建都可以，但empty是未初始化数据，更推荐
+torch.add(x,y,out=result)  #此时result = x+y
+# 替换
+y.add_(x)  #将x加到y上，改变y
+# 任何以下划线结尾的操作都会用结果替换原变量。例如：x.copy_(y), x.t_(), 都会改变 x。
+x.copy_(y)  #复制
+x.t_()  #矩阵转置
+x = torch.randn(1)
+x, x.item()  # 如果张量只有一个元素，使用.item()可以得到 Python 数据类型的数值
+x.view(3,2)  #不改变数据，改变大小（行和列），但行乘列是不变的</code></pre>
 <ul>
 <li>CUDA张量</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># CUDA 张量是能够在 GPU 设备中运算的张量。使用 .to 方法可以将 Tensor 移动到 GPU 设备中</span><br><span class="hljs-comment"># is_available 函数判断是否有 GPU 可以使用</span><br><span class="hljs-keyword">if</span> torch.cuda.is_available():<br>    device = torch.device(<span class="hljs-string">"cuda"</span>)          <span class="hljs-comment"># 建立cuda设备</span><br>    y = torch.ones_like(x, device=device)  <span class="hljs-comment"># 直接从 GPU 创建张量</span><br>    x = x.to(device)                       <span class="hljs-comment"># 或者直接使用 .to("cuda") 将张量移动到 cuda 中</span><br>    z = x + y<br>    print(z)<br>    print(z.to(<span class="hljs-string">"cpu"</span>, torch.double))       <span class="hljs-comment"># .to 也会对变量的类型做更改</span><br></code></pre></td></tr></table></figure>
-
-
-
+<pre><code class="python"># CUDA 张量是能够在 GPU 设备中运算的张量。使用 .to 方法可以将 Tensor 移动到 GPU 设备中
+# is_available 函数判断是否有 GPU 可以使用
+if torch.cuda.is_available():
+    device = torch.device(&quot;cuda&quot;)          # 建立cuda设备
+    y = torch.ones_like(x, device=device)  # 直接从 GPU 创建张量
+    x = x.to(device)                       # 或者直接使用 .to(&quot;cuda&quot;) 将张量移动到 cuda 中
+    z = x + y
+    print(z)
+    print(z.to(&quot;cpu&quot;, torch.double))       # .to 也会对变量的类型做更改</code></pre>
 <ul>
 <li>autograd自动求导</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">x = torch.ones(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,requires_grad=<span class="hljs-literal">True</span>)  <span class="hljs-comment">#设置requires_grad允许自动求导</span><br>y = x**<span class="hljs-number">2</span>+<span class="hljs-number">2</span><br>y.grad_fn   <span class="hljs-comment">#Function,反向传播函数用于计算</span><br>y.backward(torch.ones(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>),retain_graph=<span class="hljs-literal">True</span>)  <span class="hljs-comment">#retain_graph设置为True，则允许进行多次反向传播，否则只能进行一次</span><br></code></pre></td></tr></table></figure>
-
-
-
+<pre><code class="python">x = torch.ones(2,2,requires_grad=True)  #设置requires_grad允许自动求导
+y = x**2+2
+y.grad_fn   #Function,反向传播函数用于计算
+y.backward(torch.ones(2,2),retain_graph=True)  #retain_graph设置为True，则允许进行多次反向传播，否则只能进行一次
+</code></pre>
 <h3 id="基础术语"><a href="#基础术语" class="headerlink" title="基础术语"></a>基础术语</h3><ul>
 <li><p>Bounding box：给出物体在图片中的定位区域，一般表示为：（top,left,bottom,right)或（left,top,right,bottom)其中（left,top)为左下角,(right,bottom)为右下角</p>
 </li>
@@ -330,7 +354,7 @@
   </div>
   <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<!--<script src="/js/app.js?v=1587970702329"></script>-->
+<!--<script src="/js/app.js?v=1587970916025"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
@@ -369,7 +393,7 @@ $(window).scroll(function() {
           $('#back-to-top').removeClass('back-to-top-on');
         }
       }); 
-
+      hljs.initHighlightingOnLoad();
 </script>
 </body>
 <style>
